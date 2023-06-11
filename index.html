@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Java to TypeScript Converter</title>
+</head>
+<body>
+  <textarea id="javaCode" rows="10" cols="50" placeholder="Enter Java code here..."></textarea>
+  <br>
+  <div>
+	<button onclick="convertJavaToTypeScript()">Java实体转换TS</button>
+  <button onclick="copyToClipboard()">复制生成的代码</button> 
+  <span id="msg"></span>
+  </div>
+  <br>
+  <pre id="typeScriptCode"></pre>
+
+  
+
+  <script src="convert.js"></script>
+  <script>
+	let count = 1;
+    function convertJavaToTypeScript() {
+      var javaCode = document.getElementById("javaCode").value;
+      var typeScriptCode = parseJavaToTypeScript(javaCode);
+      document.getElementById("typeScriptCode").textContent = typeScriptCode;
+    }
+
+    function parseJavaToTypeScript(javaCode) {
+      // Conversion logic here...
+    }
+
+    function copyToClipboard() { 
+      if(document.getElementById("typeScriptCode").innerHTML.trim() == "")  return;
+      var typeScriptCode = document.getElementById("typeScriptCode").textContent;
+      navigator.clipboard.writeText(typeScriptCode)
+        .then(function() {
+          document.getElementById("msg").innerHTML = `OK(${count++})`
+        })
+        .catch(function(error) {
+          console.error("Failed to copy TypeScript code: ", error);
+        });
+    }
+  </script>
+  <script src="convert.js"></script>
+</body>
+</html>
